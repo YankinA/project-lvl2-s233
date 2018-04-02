@@ -1,8 +1,4 @@
 #!/usr/bin/env node
-
-  import runCommander from '..'
+import runCommander from '..';
 
 runCommander.parse(process.argv);
-
-
-
