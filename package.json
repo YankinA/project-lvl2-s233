@@ -1,6 +1,6 @@
 {
   "name": "pr2-04.18",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -25,19 +25,28 @@
   "bugs": {
     "url": "https://github.com/YankinA/project-lvl2-s233/issues"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "homepage": "https://github.com/YankinA/project-lvl2-s233#readme",
   "dependencies": {
     "babel-eslint": "^8.2.1",
     "commander": "^2.15.1",
-    "eslint": "^4.17.0",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0"
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-lodash": "^2.7.0",
+    "lodash": "^4.17.5"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-core": "*",
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.4.3",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-0": "*",
-    "jest": "^22.4.3"
+    "eslint": "^4.19.1",
+    "eslint-plugin-jest": "^21.15.0",
+    "jest": "^22.4.3",
+    "jest-cli": "^22.4.2",
+    "regenerator-runtime": "^0.11.1"
   }
 }
