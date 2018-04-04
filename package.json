@@ -1,7 +1,7 @@
 {
   "name": "pr2-04.18",
-  "version": "0.2.0",
-  "description": "",
+  "version": "0.3.35",
+  "description": "<a href=\"https://codeclimate.com/github/codeclimate/codeclimate/maintainability\"><img src=\"https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability\" /></a>",
   "main": "index.js",
   "scripts": {
     "babel-node": "babel-node",
@@ -35,6 +35,7 @@
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-lodash": "^2.7.0",
+    "ini": "^1.3.5",
     "js-yaml": "^3.11.0",
     "lodash": "^4.17.5"
   },
