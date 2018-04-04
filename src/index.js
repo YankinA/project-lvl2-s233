@@ -1,9 +1,23 @@
 import _ from 'lodash';
 import fs from 'fs';
+import yaml from 'js-yaml';
+import path from 'path';
+
+const parsers = {
+  '.json': JSON.parse,
+  '.yml': yaml.safeLoad,
+};
 
 export default (pathToFile1, pathToFile2) => {
-  const firstObj = JSON.parse(fs.readFileSync(pathToFile1));
-  const lastObj = JSON.parse(fs.readFileSync(pathToFile2));
+  const GetpathToFile1 =  fs.readFileSync(pathToFile1);
+  const GetpathToFile2 =  fs.readFileSync(pathToFile2);
+
+  const getFormat = path.extname(pathToFile1);
+
+  const parse = parsers[getFormat];
+
+  const firstObj = parse(GetpathToFile1);
+  const lastObj = parse(GetpathToFile2);
 
   const getLine = (sing, name, value) => `${sing}${name}: ${value}\n`;
 
