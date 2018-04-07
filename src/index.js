@@ -1,37 +1,32 @@
 import _ from 'lodash';
-import fs from 'fs';
-import yaml from 'js-yaml';
-import ini from 'ini';
-import path from 'path';
+import parsInAst from './ast';
 
-const parsers = {
-  '.json': JSON.parse,
-  '.yml': yaml.safeLoad,
-  '.ini': ini.parse,
-};
+export default (contentFileStr1, contentFileStr2) => {
+  const ast = parsInAst(contentFileStr1, contentFileStr2);
+  const render = (tree, depth = 0) => {
+    const increaseSpace = (num = depth) => '  '.repeat(num);
+    const result = _.flatten(tree.map((elem) => {
+      const value = _.isObject(elem.value) ?
+        `{\n${increaseSpace(depth + 4)}${Object.keys(elem.value)}: ${Object.values(elem.value)}\n${increaseSpace(depth + 2)}}` : elem.value;
 
-export default (pathToFile1, pathToFile2) => {
-  const getpathToFile1 = fs.readFileSync(pathToFile1, 'utf-8');
-  const getpathToFile2 = fs.readFileSync(pathToFile2, 'utf-8');
+      const newValue = _.isObject(elem.newValue) ?
+        `{\n${increaseSpace(depth + 4)}${Object.keys(elem.newValue)}: ${Object.values(elem.newValue)}\n${increaseSpace(depth + 2)}}` :
+        elem.newValue;
 
-  const getFormat = path.extname(pathToFile1);
 
-  const parse = parsers[getFormat];
+      const changed = _.isObject(elem.newValue) || _.isObject(elem.value) ? [`${increaseSpace()}  - ${elem.key}: ${value}`, `${increaseSpace()}  + ${elem.key}: ${newValue}`] :
+        [`${increaseSpace()}  + ${elem.key}: ${newValue}`, `${increaseSpace()}  - ${elem.key}: ${value}`];
 
-  const firstObj = parse(getpathToFile1);
-  const lastObj = parse(getpathToFile2);
-
-  const joinArrays = Array.from(new Set([...Object.keys(firstObj), ...Object.keys(lastObj)]));
-
-  const result = _.flatten(joinArrays.map((elem) => {
-    if (_.has(firstObj, elem) && _.has(lastObj, elem)) {
-      if (firstObj[elem] !== lastObj[elem]) {
-        return [`  + ${elem}: ${lastObj[elem]}`, `  - ${elem}: ${firstObj[elem]}`];
-      } return `    ${elem}: ${firstObj[elem]}`;
-    } else if (!_.has(firstObj, elem) && _.has(lastObj, elem)) {
-      return `  + ${elem}: ${lastObj[elem]}`;
-    }
-    return `  - ${elem}: ${firstObj[elem]}`;
-  })).join('\n');
-  return `{\n${result}\n}\n`;
+      const dispatcher = {
+        'changed ': () => changed,
+        'added ': () => `${increaseSpace()}  + ${elem.key}: ${value}`,
+        'deleted ': () => `${increaseSpace()}  - ${elem.key}: ${value}`,
+        'not ': () => `${increaseSpace()}    ${elem.key}: ${value}`,
+        'child ': () => `${increaseSpace()}    ${elem.key}: ${render(elem.children, depth + 2)}`,
+      };
+      return dispatcher[elem.event]();
+    })).join('\n');
+    return `{\n${result}\n${increaseSpace()}}`;
+  };
+  return render(ast);
 };
