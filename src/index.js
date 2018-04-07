@@ -28,5 +28,5 @@ export default (contentFileStr1, contentFileStr2) => {
     })).join('\n');
     return `{\n${result}\n${increaseSpace()}}`;
   };
-  return render(ast);
+  return `${render(ast)}\n`;
 };
