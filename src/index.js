@@ -7,13 +7,13 @@ const renders = {
   tree: renderTree,
 };
 
-const genDiff = (path1, path2, format = 'inline') => {
+const genDiff = (pathFile1, pathFile2, format) => {
   const render = renders[format];
-  const content1 = parseInObj(path1);
-  const content2 = parseInObj(path2);
-  const diffTree = parseInAst(content1, content2);
+  const fileContent1 = parseInObj(pathFile1);
+  const fileContent2 = parseInObj(pathFile2);
+  const ast = parseInAst(fileContent1, fileContent2);
 
-  return render(diffTree);
+  return render(ast);
 };
 
 export default genDiff;
