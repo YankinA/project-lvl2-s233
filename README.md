@@ -20,11 +20,11 @@
 
 <h3>Пример использования:</h3>
 <p>
-$ gendiff --format plain first-config.ini second-config.ini<br>
-Setting <b style="color:#E46767">common.setting2"</b> deleted.<br>
-Setting <b style="color:#E46767">"common.setting4"</b> added with value "blah blah".<br>
-Setting <b style="color:#E46767">"group1.baz"</b> changed from "bas" to "bars".<br>
-Section <b style="color:#E46767">"group2"</b> deleted.<br>
+$ gendiff --format plain first-config.ini second-config.ini<br><br>
+Setting <b>common.setting2"</b> deleted.<br>
+Setting <b>"common.setting4"</b> added with value <b>"blah blah".</b><br>
+Setting <b>"group1.baz"</b> changed from <b>"bas" to <b>"bars"</b>.<br>
+Section <b>"group2"</b> deleted.<br>
 </p>
 
 
