@@ -74,7 +74,7 @@ test('changing the contents  of the nested Plain', () => {
   expect(decision).toBe(result);
 });
 
-test('changing the contents  of the nested JSON .ini files', () => {
+test('changing the contents  of the nested JSON .yaml files', () => {
   const result = fs.readFileSync('__tests__/__fixtures__/json.json', 'utf8');
   const pathToFile1 = '__tests__/__fixtures__/yaml/before.yml';
   const pathToFile2 = '__tests__/__fixtures__/yaml/after.yml';
