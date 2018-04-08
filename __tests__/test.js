@@ -73,3 +73,12 @@ test('changing the contents  of the nested Plain', () => {
 
   expect(decision).toBe(result);
 });
+
+test('changing the contents  of the nested JSON .ini files', () => {
+  const result = fs.readFileSync('__tests__/__fixtures__/json.json', 'utf8');
+  const pathToFile1 = '__tests__/__fixtures__/ini/before.ini';
+  const pathToFile2 = '__tests__/__fixtures__/ini/after.ini';
+  const decision = genDiff(pathToFile1, pathToFile2, 'json');
+
+  expect(decision).toBe(result);
+});

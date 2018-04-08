@@ -1,12 +1,13 @@
 import renderTree from './renderTree';
 import renderPlain from './renderPlain';
 import parseInAst from './ast';
-import parseInObj from './parse';
+import parseInObj from './parsers';
 
 
 const renders = {
   tree: renderTree,
   plain: renderPlain,
+  json: JSON.stringify,
 };
 
 const genDiff = (pathFile1, pathFile2, format = 'tree') => {
