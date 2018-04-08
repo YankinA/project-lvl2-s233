@@ -3,7 +3,7 @@ import _ from 'lodash';
 export default (astTree) => {
   const render = (tree, depth = 0) => {
     const increaseSpace = (num = depth) => '  '.repeat(num);
-    const result = _.flatten(tree.map((elem) => {
+    const formTree = _.flatten(tree.map((elem) => {
       const stringify = (valuesObj) => {
         if (_.isObject(valuesObj)) {
           return `{\n${increaseSpace(depth + 4)}${Object.keys(valuesObj)}: ${Object.values(valuesObj)}\n${increaseSpace(depth + 2)}}`;
@@ -23,7 +23,7 @@ export default (astTree) => {
       };
       return dispatcher[elem.type]();
     })).join('\n');
-    return `{\n${result}\n${increaseSpace()}}`;
+    return `{\n${formTree}\n${increaseSpace()}}`;
   };
   return `${render(astTree)}\n`;
 };

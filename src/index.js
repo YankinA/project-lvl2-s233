@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import yaml from 'js-yaml';
 import ini from 'ini';
-import parseInAst from './ast';
+import astBuild from './ast';
 import { renderTree, renderPlain } from './renderers';
 
 
@@ -25,7 +25,7 @@ const genDiff = (pathFile1, pathFile2, format = 'tree') => {
   const parse = parsers[fileExt];
   const content1 = parse(fs.readFileSync(pathFile1, 'utf-8'));
   const content2 = parse(fs.readFileSync(pathFile2, 'utf-8'));
-  const diffTree = parseInAst(content1, content2);
+  const diffTree = astBuild(content1, content2);
 
   return render(diffTree);
 };

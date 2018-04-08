@@ -1,4 +1,4 @@
-import renderTree from './renderTree';
-import renderPlain from './renderPlain';
+import renderTree from './rendererTree';
+import renderPlain from './rendererPlain';
 
 export { renderTree, renderPlain };
