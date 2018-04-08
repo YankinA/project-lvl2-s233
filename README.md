@@ -14,7 +14,7 @@
 <h3>Возможности утилиты:</h3>
 
 <ul>
-<li>Поддержка разных форматов</li>
+<li>Поддержка форматов: json, yaml, ini</li>
 <li>Генерация отчета в виде plain text, pretty и json</li>
 <ul>
 
@@ -26,6 +26,11 @@ Setting <b>"common.setting4"</b> added with value <b>"blah blah".</b><br>
 Setting <b>"group1.baz"</b> changed from <b>"bas"</b> to <b>"bars"</b>.<br>
 Section <b>"group2"</b> deleted.<br>
 </p>
+
+###Установить:
+```
+npm i pr2-04.18
+```
 
 
 
