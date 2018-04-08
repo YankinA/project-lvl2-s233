@@ -56,20 +56,20 @@ test('changing the contents of the nested .ini files', () => {
   expect(decision).toBe(result);
 });
 
-test('changing the contents', () => {
+test('changing the contents Plain', () => {
   const result = fs.readFileSync('__tests__/__fixtures__/result_plain.txt', 'utf8');
   const pathToFile1 = '__tests__/__fixtures__/json/before.json';
   const pathToFile2 = '__tests__/__fixtures__/json/after.json';
-  const decision = genDiff(pathToFile1, pathToFile2);
+  const decision = genDiff(pathToFile1, pathToFile2, 'plain');
 
   expect(decision).toBe(result);
 });
 
-test('changing the contents', () => {
-  const result = fs.readFileSync('__tests__/__fixtures__/result_plain.txt', 'utf8');
-  const pathToFile1 = '__tests__/__fixtures__/json/before.json';
-  const pathToFile2 = '__tests__/__fixtures__/json/after.json';
-  const decision = genDiff(pathToFile1, pathToFile2);
+test('changing the contents  of the nested Plain', () => {
+  const result = fs.readFileSync('__tests__/__fixtures__/result_plain_nested.txt', 'utf8');
+  const pathToFile1 = '__tests__/__fixtures__/json/__nested_structure__/before.json';
+  const pathToFile2 = '__tests__/__fixtures__/json/__nested_structure__/after.json';
+  const decision = genDiff(pathToFile1, pathToFile2, 'plain');
 
   expect(decision).toBe(result);
 });

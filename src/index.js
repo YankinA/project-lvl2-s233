@@ -6,6 +6,7 @@ import parseInObj from './parse';
 
 const renders = {
   tree: renderTree,
+  plain: renderPlain,
 };
 
 const genDiff = (pathFile1, pathFile2, format = 'tree') => {
