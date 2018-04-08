@@ -11,7 +11,10 @@ export default (ast) => {
       };
 
       const addedValue = (value) => {
-        return stringifyValue(value) !== 'complex value' ? `value: ${stringifyValue(value)}` : stringifyValue(elem.value);
+        if (stringifyValue(value) !== 'complex value') {
+          return `value: ${stringifyValue(value)}`;
+        }
+        return stringifyValue(elem.value);
       };
 
       const pathFile = (key) => {
