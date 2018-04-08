@@ -27,7 +27,7 @@ Setting <b>"group1.baz"</b> changed from <b>"bas"</b> to <b>"bars"</b>.<br>
 Section <b>"group2"</b> deleted.<br>
 </p>
 
-###Установить:
+<h4>Установить:</h4>
 ```
 npm i pr2-04.18
 ```
