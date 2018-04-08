@@ -19,13 +19,13 @@
 <ul>
 
 <h3>Пример использования:</h3>
-<div style="background-color:#E1D6D6">
-$ gendiff <b style="color:#948989">--format plain first-config.ini second-config.ini<b><br>
+<p>
+$ gendiff --format plain first-config.ini second-config.ini<br>
 Setting <b style="color:#E46767">common.setting2"</b> deleted.<br>
 Setting <b style="color:#E46767">"common.setting4"</b> added with value "blah blah".<br>
 Setting <b style="color:#E46767">"group1.baz"</b> changed from "bas" to "bars".<br>
 Section <b style="color:#E46767">"group2"</b> deleted.<br>
-</div>
+</p>
 
 
 
