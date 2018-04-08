@@ -28,6 +28,7 @@ Section <b>"group2"</b> deleted.<br>
 </p>
 
 <h4>Установить:</h4>
+
 ```
 npm i pr2-04.18
 ```
