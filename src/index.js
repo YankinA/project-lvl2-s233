@@ -3,7 +3,7 @@ import fs from 'fs';
 import yaml from 'js-yaml';
 import ini from 'ini';
 import astBuild from './ast';
-import { renderTree, renderPlain } from './renderers';
+import { renderTree, renderPlain, rendererJson } from './renderers';
 
 
 const parsers = {
@@ -16,7 +16,7 @@ const parsers = {
 const renderers = {
   tree: renderTree,
   plain: renderPlain,
-  json: JSON.stringify,
+  json: rendererJson,
 };
 
 const genDiff = (pathFile1, pathFile2, format = 'tree') => {

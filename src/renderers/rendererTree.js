@@ -3,6 +3,7 @@ import _ from 'lodash';
 export default (astTree) => {
   const render = (tree, depth = 0) => {
     const increaseSpace = (num = depth) => '  '.repeat(num);
+    const sing = { deleted: '-', added: '+' };
     const formTree = _.flatten(tree.map((elem) => {
       const stringify = (valuesObj) => {
         if (_.isObject(valuesObj)) {
@@ -11,13 +12,14 @@ export default (astTree) => {
         return valuesObj;
       };
 
-      const changed = _.isObject(elem.newValue) || _.isObject(elem.value) ? [`${increaseSpace()}  - ${elem.key}: ${stringify(elem.value)}`, `${increaseSpace()}  + ${elem.key}: ${stringify(elem.newValue)}`] :
-        [`${increaseSpace()}  + ${elem.key}: ${stringify(elem.newValue)}`, `${increaseSpace()}  - ${elem.key}: ${stringify(elem.value)}`];
-
       const dispatcher = {
-        changed: () => changed,
-        added: () => `${increaseSpace()}  + ${elem.key}: ${stringify(elem.value)}`,
-        deleted: () => `${increaseSpace()}  - ${elem.key}: ${stringify(elem.value)}`,
+        changed: () => {
+          const valueOld = `${increaseSpace()}  ${sing.deleted} ${elem.key}: ${stringify(elem.value)}`;
+          const valueNew = `${increaseSpace()}  ${sing.added} ${elem.key}: ${stringify(elem.newValue)}`;
+          return [valueOld, valueNew];
+        },
+        added: () => `${increaseSpace()}  ${sing.added} ${elem.key}: ${stringify(elem.value)}`,
+        deleted: () => `${increaseSpace()}  ${sing.deleted} ${elem.key}: ${stringify(elem.value)}`,
         unchanged: () => `${increaseSpace()}    ${elem.key}: ${stringify(elem.value)}`,
         child: () => `${increaseSpace()}    ${elem.key}: ${render(elem.children, depth + 2)}`,
       };

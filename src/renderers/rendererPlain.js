@@ -9,14 +9,6 @@ export default (ast) => {
         }
         return `'${value}'`;
       };
-
-      const stringifyValueAdded = (value) => {
-        if (stringifyValue(value) !== 'complex value') {
-          return `value: ${stringifyValue(value)}`;
-        }
-        return stringifyValue(elem.value);
-      };
-
       const buildPathFile = (key) => {
         if (_.isEmpty(path)) {
           return key;
@@ -26,14 +18,20 @@ export default (ast) => {
 
       const dispatcher = {
         changed: () => `  Property '${buildPathFile(elem.key)}' was updated. From ${stringifyValue(elem.value)} to ${stringifyValue(elem.newValue)}`,
-        added: () => `  Property '${buildPathFile(elem.key)}' was added with ${stringifyValueAdded(elem.value)}`,
+        added: () => {
+          const value = stringifyValue(elem.value);
+          return `  Property '${buildPathFile(elem.key)}' was added with ${value === 'complex value' ? value : `value: ${value}`}`;
+        },
         deleted: () => `  Property '${buildPathFile(elem.key)}' was removed`,
-        unchanged: () => 'unchanged',
-        child: () => render(elem.children, [...path, elem.key]),
+        child: () => {
+          const children = elem.children.filter(item => item.type !== 'unchanged');
+          return render(children, [...path, elem.key]);
+        },
       };
       return dispatcher[elem.type]();
-    })).filter(item => item !== 'unchanged').join('\n');
+    })).join('\n');
     return formPlainList;
   };
-  return `${render(ast)}\n`;
+  const filterAst = ast.filter(elem => elem.type !== 'unchanged');
+  return `${render(filterAst)}\n`;
 };
