@@ -13,18 +13,18 @@ const astBuild = (obj1, obj2) => {
         return {
           key,
           type: 'changed',
-          value: obj1[key],
+          oldValue: obj1[key],
           newValue: obj2[key],
         };
       }
-      return { key, type: 'unchanged', value: obj2[key] };
+      return { key, type: 'unchanged', oldValue: obj2[key] };
     }
 
     if (_.has(obj1, key)) {
-      return { key, type: 'deleted', value: obj1[key] };
+      return { key, type: 'deleted', oldValue: obj1[key] };
     }
 
-    return { key, type: 'added', value: obj2[key] };
+    return { key, type: 'added', oldValue: obj2[key] };
   });
 
   return buildTree;

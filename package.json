@@ -1,6 +1,6 @@
 {
   "name": "pr2-04.18",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "<a href=\"https://codeclimate.com/github/codeclimate/codeclimate/maintainability\"><img src=\"https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability\" /></a>",
   "main": "index.js",
   "scripts": {

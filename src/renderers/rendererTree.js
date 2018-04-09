@@ -14,14 +14,14 @@ export default (astTree) => {
 
       const dispatcher = {
         changed: () => {
-          const valueOld = `${increaseSpace()}  ${sing.deleted} ${elem.key}: ${stringify(elem.value)}`;
+          const valueOld = `${increaseSpace()}  ${sing.deleted} ${elem.key}: ${stringify(elem.oldValue)}`;
           const valueNew = `${increaseSpace()}  ${sing.added} ${elem.key}: ${stringify(elem.newValue)}`;
           return [valueOld, valueNew];
         },
-        added: () => `${increaseSpace()}  ${sing.added} ${elem.key}: ${stringify(elem.value)}`,
-        deleted: () => `${increaseSpace()}  ${sing.deleted} ${elem.key}: ${stringify(elem.value)}`,
-        unchanged: () => `${increaseSpace()}    ${elem.key}: ${stringify(elem.value)}`,
-        child: () => `${increaseSpace()}    ${elem.key}: ${render(elem.children, depth + 2)}`,
+        added: () => `${increaseSpace()}  ${sing.added} ${elem.key}: ${stringify(elem.oldValue)}`,
+        deleted: () => `${increaseSpace()}  ${sing.deleted} ${elem.key}: ${stringify(elem.oldValue)}`,
+        unchanged: () => `${increaseSpace()}    ${elem.key}: ${stringify(elem.oldValue)}`,
+        child: () => `${increaseSpace()}    ${elem.key}: ${render(elem.children, depth + 2)}`,    
       };
       return dispatcher[elem.type]();
     })).join('\n');

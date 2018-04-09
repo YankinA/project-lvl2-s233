@@ -17,9 +17,9 @@ export default (ast) => {
       };
 
       const dispatcher = {
-        changed: () => `  Property '${buildPathFile(elem.key)}' was updated. From ${stringifyValue(elem.value)} to ${stringifyValue(elem.newValue)}`,
+        changed: () => `  Property '${buildPathFile(elem.key)}' was updated. From ${stringifyValue(elem.oldValue)} to ${stringifyValue(elem.newValue)}`,
         added: () => {
-          const value = stringifyValue(elem.value);
+          const value = stringifyValue(elem.oldValue);
           return `  Property '${buildPathFile(elem.key)}' was added with ${value === 'complex value' ? value : `value: ${value}`}`;
         },
         deleted: () => `  Property '${buildPathFile(elem.key)}' was removed`,
