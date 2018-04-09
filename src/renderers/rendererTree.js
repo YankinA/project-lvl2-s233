@@ -21,7 +21,7 @@ export default (astTree) => {
         added: () => `${increaseSpace()}  ${sing.added} ${elem.key}: ${stringify(elem.oldValue)}`,
         deleted: () => `${increaseSpace()}  ${sing.deleted} ${elem.key}: ${stringify(elem.oldValue)}`,
         unchanged: () => `${increaseSpace()}    ${elem.key}: ${stringify(elem.oldValue)}`,
-        child: () => `${increaseSpace()}    ${elem.key}: ${render(elem.children, depth + 2)}`,    
+        child: () => `${increaseSpace()}    ${elem.key}: ${render(elem.children, depth + 2)}`,
       };
       return dispatcher[elem.type]();
     })).join('\n');
