@@ -11,7 +11,7 @@ const renderers = {
 export default format => (ast) => {
   const render = renderers[format];
   if (!render) {
-    return throw new Error(`unkown render: ${render}`);
+    throw new Error(`unkown render: ${render}`);
   }
   return render(ast);
 };
